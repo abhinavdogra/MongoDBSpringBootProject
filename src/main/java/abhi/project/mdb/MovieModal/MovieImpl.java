@@ -24,13 +24,11 @@ public class MovieImpl implements IMovies {
 
 	@Override
 	public Object updateMovie(Movie movie) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void addComments(Comments comments) {
-		// TODO Auto-generated method stub
 
 	}
 
