@@ -1,0 +1,96 @@
+Design and develop MDB application backend
+
+Application detail:
+MDB is an online database of information related to movies, television shows.
+
+Technology to be used:
+1. REST API	(JAX-RS Jersey Implementation)
+2. Java 8
+3. Spring Boot
+4. Mongo DB
+5. Gradle
+
+
+No need to develop UI, use POSTMAN or Swagger to test the REST services
+
+
+Requirement: 
+
+MDB is a client-server architecture application. You need to develop the Rest layer and engine layer of it (Backend part)
+
+Rest layer requirement:
+1. API to add the new movie or show in DB 
+	Points:
+	Mandatory input's (movieName/showName, dateOfRelease, duration)
+	Should return the unique movieId, showID
+	Business Exception for mandatory input's
+	
+2. API to update the information of new movie or show in DB
+	Points:
+	Mandatory input's (movieId/showId)
+	Business Exception for the fields not present in DB
+
+3. API to search a movies or shows based on the following requirement
+	Points:
+	Inputs fields: "movieId/showId" or "movieName/showName" or "actor" or "producer" "director" or "dataOfRelease"
+	Response should return all the non-empty/not null fields related to movie or show including comments
+
+4. API to add comments for movie or show {API should allow to add multiple comments for one movie/show}
+	Points:
+	Mandatory input's movieId/showID and userName and comments
+	Business Exception for other fields then movieId/showId, userName, comments and if comments are empty
+
+
+Exception:
+You can design you own business exceptions for the usecase.
+
+
+Mongo DB Design:
+
+Movies Collection:	(Will have information related to movies)
+{
+"_id": ObjectId,
+"movieId:" : ObjectId,
+"movieName" : String,
+"movieDescription" : String,
+"dateOfRelease" : Localdate,
+"theatre" : List<String>,
+"cast" : Object {
+					"actor" : List<String>
+					"producer" : List<String>
+					"director" : List<String>
+				},
+"rating" : int,
+"duration" : double,
+}
+
+Shows Collection:	(Will have information related to shows)
+{
+"_id": ObjectId,
+"showId" : ObjectId,
+"showName" : String,
+"showDescription" : String,
+"dateOfRelease" : Localdate,
+"channels" : List<String>,
+"cast" : Object {
+					"actor" : List<String>
+					"producer" : List<String>
+					"director" : List<String>
+				},
+"rating" : int,
+"duration" : double
+}
+
+Comments Collection:	(Can have comments on movie and show both)
+{
+"_id": ObjectId,
+"comments" : [  {
+				"user" : String
+				"comment" : String
+				},
+				{
+				"user" : String
+				"comment" : String
+				}
+			 ]
+}
