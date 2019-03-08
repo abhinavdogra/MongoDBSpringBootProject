@@ -21,13 +21,11 @@ public class ShowsImpl implements IShows {
 
 	@Override
 	public Object updateShow(Shows show) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void addComments(Comments comments) {
-		// TODO Auto-generated method stub
 
 	}
 
