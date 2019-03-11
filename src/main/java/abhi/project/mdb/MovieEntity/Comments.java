@@ -5,8 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "comments")
 public class Comments {
 	private String comment;
-	private Object movieID;
-	private Object showID;
+	private int movieID;
+	private int showID;
 
 	public String getComment() {
 		return comment;
@@ -16,19 +16,20 @@ public class Comments {
 		this.comment = comment;
 	}
 
-	public Object getMovieID() {
+	public int getMovieID() {
 		return movieID;
 	}
 
-	public void setMovieID(Object movieID) {
+	public void setMovieID(int movieID) {
 		this.movieID = movieID;
 	}
 
-	public Object getShowID() {
+	public int getShowID() {
 		return showID;
 	}
 
-	public void setShowID(Object showID) {
+	public void setShowID(int showID) {
 		this.showID = showID;
 	}
+
 }

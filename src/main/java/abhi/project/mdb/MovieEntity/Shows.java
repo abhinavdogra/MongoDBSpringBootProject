@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "shows")
 public class Shows {
@@ -17,12 +19,18 @@ public class Shows {
 	 * }
 	 */
 
+	@Field
+	@Indexed(unique=true)
 	private int showID;
+	@Field
 	private String showName;
 	private String showDescription;
+	@Field
 	private Date dateOfRelease;
-	private List<Channels> channels;
-	private List<Cast> cast;
+	private List<String> channels;
+	@Field
+	private Cast cast;
+	@Field
 	private double duration;
 	private int rating;
 
@@ -58,19 +66,19 @@ public class Shows {
 		this.dateOfRelease = dateOfRelease;
 	}
 
-	public List<Channels> getChannels() {
+	public List<String> getChannels() {
 		return channels;
 	}
 
-	public void setChannels(List<Channels> channels) {
+	public void setChannels(List<String> channels) {
 		this.channels = channels;
 	}
 
-	public List<Cast> getCast() {
+	public Cast getCast() {
 		return cast;
 	}
 
-	public void setCast(List<Cast> cast) {
+	public void setCast(Cast cast) {
 		this.cast = cast;
 	}
 

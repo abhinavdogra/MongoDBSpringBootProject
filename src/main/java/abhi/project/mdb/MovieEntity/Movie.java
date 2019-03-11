@@ -3,21 +3,29 @@ package abhi.project.mdb.MovieEntity;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "movie")
 public class Movie {
 
+	@Field
+	@Indexed(unique=true)
 	private int movieId;
+	@Field
 	private String movieName;
 	private String movieDescription;
+	@Field
 	private Date dateOfRelease;
 	private List<String> theaters;
+	@Field
 	private Cast cast;
+	@Field
 	private double duration;
 	private int rating;
-	
+
 	public int getMovieId() {
 		return movieId;
 	}
@@ -58,6 +66,13 @@ public class Movie {
 		this.theaters = theaters;
 	}
 
+	public Cast getCast() {
+		return cast;
+	}
+
+	public void setCast(Cast cast) {
+		this.cast = cast;
+	}
 
 	public double getDuration() {
 		return duration;
@@ -75,8 +90,4 @@ public class Movie {
 		this.rating = rating;
 	}
 
-	public void setCast(Cast cast) {
-		this.cast = cast;
-	}
-
-	}
+}

@@ -1,8 +1,5 @@
 package abhi.project.mdb.MongoDAO;
 
-import abhi.project.mdb.MovieEntity.Actor;
-import abhi.project.mdb.MovieEntity.Cast;
-import abhi.project.mdb.MovieEntity.Channels;
 import abhi.project.mdb.MovieEntity.Comments;
 import abhi.project.mdb.MovieEntity.Movie;
 import abhi.project.mdb.MovieEntity.Shows;
@@ -13,12 +10,10 @@ public interface IDBOperations {
 
 	public Shows saveShows(Shows shows);
 
-	public Comments saveComments(Comments movie);
+	public Movie updateMovie(Movie movie);
+	
+	public Shows updateShow(Shows shows);
 
-	public Cast saveCast(Cast cast);
-
-	public Actor saveActors(Actor actor);
-
-	public Channels saveChannels(Channels channels);
+	public Object saveComments(Comments comments, boolean isMovie);
 
 }
