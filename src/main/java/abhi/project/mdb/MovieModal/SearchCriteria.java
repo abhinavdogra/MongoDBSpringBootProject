@@ -3,27 +3,16 @@ package abhi.project.mdb.MovieModal;
 import java.util.Date;
 
 public class SearchCriteria {
-	private Object movieID;
-	private Object showID;
+	// "movieId/showId" or "movieName/showName" or "actor" or "producer" "director"
+	// or "dataOfRelease"
+	private int movieId;
+	private int showId;
 	private String movieName;
 	private String showName;
 	private Date dateOfRelease;
-
-	public Object getMovieID() {
-		return movieID;
-	}
-
-	public void setMovieID(String movieID) {
-		this.movieID = movieID;
-	}
-
-	public Object getShowID() {
-		return showID;
-	}
-
-	public void setShowID(String showID) {
-		this.showID = showID;
-	}
+	private String actor;
+	private String producer;
+	private String director;
 
 	public String getMovieName() {
 		return movieName;
@@ -49,12 +38,44 @@ public class SearchCriteria {
 		this.dateOfRelease = dateOfRelease;
 	}
 
-	public void setMovieID(Object movieID) {
-		this.movieID = movieID;
+	public String getActor() {
+		return actor;
 	}
 
-	public void setShowID(Object showID) {
-		this.showID = showID;
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
+
+	public String getProducer() {
+		return producer;
+	}
+
+	public void setProducer(String producer) {
+		this.producer = producer;
+	}
+
+	public String getDirector() {
+		return director;
+	}
+
+	public void setDirector(String director) {
+		this.director = director;
+	}
+
+	public int getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(int movieId) {
+		this.movieId = movieId;
+	}
+
+	public int getShowId() {
+		return showId;
+	}
+
+	public void setShowId(int showId) {
+		this.showId = showId;
 	}
 
 }

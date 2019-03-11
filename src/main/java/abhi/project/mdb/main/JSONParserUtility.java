@@ -20,7 +20,7 @@ public class JSONParserUtility {
 	// "duration" : double,
 	// }
 	
-	public static JSONObject createJSONObject(Object objectToBeCreated) {
+	public static JSONObject createJSONObjectForMovie(Object objectToBeCreated) {
 		JSONObject obj = new JSONObject();
 		
 		return null;
