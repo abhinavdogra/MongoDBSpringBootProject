@@ -15,7 +15,7 @@ import abhi.project.mdb.MovieModal.SearchCriteria;
 public interface IMovieRepository extends MongoRepository<Movie,Object> {
 
 	//"movieId/showId" or "movieName/showName" or "actor" or "producer" "director" or "dataOfRelease"
-	public List<Movie> findByMovieId(int movieIds);
+	public List<Movie> findByMovieId(int movieId);
 	public List<Movie> findByMovieName(String movieName);
 	public List<Movie> findByDateOfRelease(Date dateOfRelease);
 	public List<Movie> findByCast_ActorsIn(String actor);

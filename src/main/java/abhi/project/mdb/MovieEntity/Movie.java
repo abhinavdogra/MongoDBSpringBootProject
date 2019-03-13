@@ -3,7 +3,8 @@ package abhi.project.mdb.MovieEntity;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -11,8 +12,10 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "movie")
 public class Movie {
 
+	@Id
+	private ObjectId _id;
 	@Field
-	@Indexed(unique=true)
+	@Indexed(unique = true)
 	private int movieId;
 	@Field
 	private String movieName;
@@ -88,6 +91,14 @@ public class Movie {
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+
+	public ObjectId get_id() {
+		return _id;
+	}
+
+	public void set_id(ObjectId _id) {
+		this._id = _id;
 	}
 
 }

@@ -1,6 +1,12 @@
 package abhi.project.mdb.MovieModal;
 
+import java.io.IOException;
+import java.util.List;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +34,6 @@ public class MovieImpl implements IMovies {
 
 	@Override
 	public Object updateMovie(Movie movie) throws MDBException {
-		validation.validateMovieDetails(movie);
 		Movie updatedMovie = dbOperations.updateMovie(movie);
 		return updatedMovie;
 	}
@@ -39,8 +44,8 @@ public class MovieImpl implements IMovies {
 	}
 
 	@Override
-	public Object search(SearchCriteria search) throws JSONException {
-		return dbOperations.search(search, true);
+	public List<Movie> search(SearchCriteria search) throws JSONException, JsonGenerationException, JsonMappingException, IOException {
+		return (List<Movie>) dbOperations.search(search, true);
 	}
 
 }

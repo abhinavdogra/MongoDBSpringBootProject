@@ -1,5 +1,7 @@
 package abhi.project.mdb.MongoDAO;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Component;
 
@@ -7,10 +9,10 @@ import abhi.project.mdb.MovieEntity.Comments;
 import abhi.project.mdb.MovieEntity.Movie;
 
 @Component
-public interface ICommentsRepository extends MongoRepository<Comments, String>  {
+public interface ICommentsRepository extends MongoRepository<Comments, Object>  {
 
-	public Comments findByMovieID(String movieID);
+	public List<Comments> findByMovieId(int movieId);
 
-	public Comments findByShowID(String showID);
+	public List<Comments> findByShowID(int showID);
 
 }

@@ -1,8 +1,14 @@
 package abhi.project.mdb.main;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.codehaus.jettison.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,56 +36,102 @@ public class MovieController {
 	ShowsImpl shows;
 
 	@PostMapping(value = "add/movie", consumes = "application/json", produces = "application/json")
-	public Object addMovie(@RequestBody Movie movie) throws MDBException {
-		Object createdMovie = movies.addMovie(movie);
-		new ResponseEntity<>("movie created with ID", HttpStatus.OK);
-		return createdMovie;
+	public @ResponseBody ResponseEntity<?> addMovie(@RequestBody Movie movie) {
+		Object createdMovie = null;
+		try {
+			createdMovie = movies.addMovie(movie);
+		} catch (MDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		HttpHeaders head = new HttpHeaders();
+		head.add("Status", "Movie created sucessfully.");
+		return new ResponseEntity<Object>(createdMovie, head, HttpStatus.OK);
 
 	}
 
 	@PostMapping(value = "add/show", consumes = "application/json", produces = "application/json")
-	public Object addShow(@RequestBody Shows show) throws MDBException {
-		Object createdShow = shows.addShow(show);
-		return createdShow;
+	public @ResponseBody ResponseEntity<?> addShow(@RequestBody Shows show) {
+		Object createdShow = null;
+
+		try {
+			createdShow = shows.addShow(show);
+		} catch (MDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		HttpHeaders head = new HttpHeaders();
+		head.add("Status", "Show created sucessfully.");
+		return new ResponseEntity<Object>(createdShow, head, HttpStatus.OK);
 
 	}
 
 	@PutMapping(value = "update/movie", consumes = "application/json", produces = "application/json")
-	public Object updateMovie(@RequestBody Movie movie) throws MDBException {
-		Object updatedMovie = movies.updateMovie(movie);
-		return updatedMovie;
+	public @ResponseBody ResponseEntity<?> updateMovie(@RequestBody Movie movie) {
+		Object updatedMovie = null;
+		try {
+			updatedMovie = movies.updateMovie(movie);
+		} catch (MDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		HttpHeaders head = new HttpHeaders();
+		head.add("Status", "Movie updated sucessfully.");
+		return new ResponseEntity<Object>(updatedMovie, head, HttpStatus.OK);
 
 	}
 
 	@PutMapping(value = "update/show", consumes = "application/json", produces = "application/json")
-	public Object updateShow(@RequestBody Shows show) throws MDBException {
-		Object updatedShow = shows.updateShow(show);
-		return updatedShow;
+	public @ResponseBody ResponseEntity<?> updateShow(@RequestBody Shows show) {
+		Object updatedShow = null;
+		try {
+			updatedShow = shows.updateShow(show);
+		} catch (MDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		HttpHeaders head = new HttpHeaders();
+		head.add("Status", "Show updated sucessfully.");
+		return new ResponseEntity<Object>(updatedShow, head, HttpStatus.OK);
 
 	}
 
-	@PostMapping(value = "movies/search", consumes = "application/json", produces = "application/json")
-	public Object searchMovie(@RequestBody SearchCriteria search) throws JSONException {
-		Object seacrhResult = movies.search(search);
-		JSONParserUtility.createJSONObjectForMovie(seacrhResult);
-		return seacrhResult;
+	@PostMapping(value = "movies/search", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<?> searchMovie(@RequestBody SearchCriteria search) throws JSONException {
+		List<Movie> list = new ArrayList<>();
+		try {
+			list = movies.search(search);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<Object>(list, HttpStatus.OK);
 	}
 
-	@PostMapping(value = "shows/search", consumes = "application/json", produces = "application/json")
-	public Object searchShows(@RequestBody SearchCriteria search) throws JSONException {
-		Object seacrhResult = shows.search(search);
-		return seacrhResult;
+	@PostMapping(value = "shows/search", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<?> searchShows(@RequestBody SearchCriteria search) throws JSONException {
+		List<Shows> list = new ArrayList<>();
+		try {
+			list = shows.search(search);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<Object>(list, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "comments", consumes = "application/json", produces = "application/json")
-	public Object addComments(@RequestBody Comments comments) throws MDBException {
-
-		if (comments.getMovieID() > 0) {
-			return movies.addComments(comments);
+	public @ResponseBody ResponseEntity<?> addComments(@RequestBody Comments comments) {
+		Object comment = null;
+		if (comments.getMovieId() > 0) {
+			comment = movies.addComments(comments);
 		} else if (comments.getShowID() > 0) {
-			return shows.addComments(comments);
+			comment = shows.addComments(comments);
 		} else
-			throw new MDBException("Comments doesn't have a vaid MovieID/ShowID");
+			return new ResponseEntity<Object>("Comments doesn't have a valid MovieID/ShowID", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Object>(comment, HttpStatus.OK);
 	}
 
 }
