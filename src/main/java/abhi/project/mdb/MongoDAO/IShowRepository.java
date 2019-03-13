@@ -11,7 +11,6 @@ import abhi.project.mdb.MovieEntity.Shows;
 
 @Component
 public interface IShowRepository extends MongoRepository<Shows, Object>{
-
 	public List<Shows> findByShowID(int showId);
 	public List<Shows> findByShowName(String showName);
 	public List<Shows> findByDateOfRelease(Date dateOfRelease);

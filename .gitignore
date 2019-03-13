@@ -1,2 +1,14 @@
 /.gradle/
 *.class
+bin/main/abhi/project/mdb/main/JSONParserUtility.class
+bin/main/abhi/project/mdb/main/MovieController.class
+bin/main/abhi/project/mdb/MongoDAO/DBOperations$1.class
+bin/main/abhi/project/mdb/MongoDAO/DBOperations$2.class
+bin/main/abhi/project/mdb/MongoDAO/DBOperations.class
+bin/main/abhi/project/mdb/MongoDAO/ICommentsRepository.class
+bin/main/abhi/project/mdb/MovieEntity/Comments.class
+bin/main/abhi/project/mdb/MovieEntity/Movie.class
+bin/main/abhi/project/mdb/MovieEntity/Shows.class
+bin/main/abhi/project/mdb/MovieModal/IMovieDB.class
+bin/main/abhi/project/mdb/MovieModal/MovieImpl.class
+bin/main/abhi/project/mdb/MovieModal/ShowsImpl.class

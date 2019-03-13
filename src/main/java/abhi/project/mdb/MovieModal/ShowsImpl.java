@@ -1,13 +1,18 @@
 package abhi.project.mdb.MovieModal;
 
+import java.io.IOException;
+import java.util.List;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import abhi.project.mdb.MDBException.MDBException;
 import abhi.project.mdb.MongoDAO.DBOperations;
 import abhi.project.mdb.MovieEntity.Comments;
-import abhi.project.mdb.MovieEntity.Movie;
 import abhi.project.mdb.MovieEntity.Shows;
 import abhi.project.mdb.Validation.MDBValidation;
 
@@ -29,7 +34,6 @@ public class ShowsImpl implements IShows {
 
 	@Override
 	public Object updateShow(Shows show) throws MDBException {
-		validation.validateShowDetails(show);
 		Shows updatedShow = dbOperations.updateShow(show);
 		return updatedShow;
 	}
@@ -40,8 +44,8 @@ public class ShowsImpl implements IShows {
 	}
 
 	@Override
-	public Object search(SearchCriteria search) throws JSONException {
-		return dbOperations.search(search, false);
+	public List<Shows> search(SearchCriteria search) throws JSONException, JsonGenerationException, JsonMappingException, IOException {
+		return (List<Shows>) dbOperations.search(search, false);
 	}
 
 }
