@@ -6,10 +6,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Component;
 
 import abhi.project.mdb.MovieEntity.Comments;
-import abhi.project.mdb.MovieEntity.Movie;
 
 @Component
-public interface ICommentsRepository extends MongoRepository<Comments, Object>  {
+public interface ICommentsRepository extends MongoRepository<Comments, Object> {
 
 	public List<Comments> findByMovieId(int movieId);
 
