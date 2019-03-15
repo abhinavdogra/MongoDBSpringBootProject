@@ -10,6 +10,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +31,9 @@ import abhi.project.mdb.MovieModal.ShowsImpl;
 
 @RestController
 @RequestMapping("/application/mdb")
-public class MovieController {
+@Component
+@EnableResourceServer
+public class MovieController extends ResourceServerConfigurerAdapter {
 
 	@Autowired
 	MovieImpl movies;
@@ -133,5 +139,15 @@ public class MovieController {
 			return new ResponseEntity<Object>("Comments doesn't have a valid MovieID/ShowID", HttpStatus.BAD_REQUEST);
 		return new ResponseEntity<Object>(comment, HttpStatus.OK);
 	}
+	
+	@Override
+	 public void configure (HttpSecurity http) throws Exception {
+	 http
+    .authorizeRequests()                                                                
+        .antMatchers ("/oauth/token", "/oauth/authorize**").permitAll()               
+        .antMatchers("**/search").hasAnyRole("USER","ADMIN")                                    
+        .antMatchers("/application/mdb**").hasRole("ADMIN")
+        .anyRequest().authenticated(); 
+	 }
 
 }

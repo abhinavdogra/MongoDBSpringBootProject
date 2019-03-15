@@ -8,9 +8,7 @@ import java.util.stream.Collectors;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +18,6 @@ import abhi.project.mdb.MovieEntity.Movie;
 import abhi.project.mdb.MovieEntity.Shows;
 import abhi.project.mdb.MovieModal.SearchCriteria;
 import abhi.project.mdb.Validation.MDBValidation;
-import abhi.project.mdb.main.JSONParserUtility;
 
 @Component
 public class DBOperations implements IDBOperations {
