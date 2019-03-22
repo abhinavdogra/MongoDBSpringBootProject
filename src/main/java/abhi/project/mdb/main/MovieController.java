@@ -144,7 +144,7 @@ public class MovieController extends ResourceServerConfigurerAdapter {
 	 public void configure (HttpSecurity http) throws Exception {
 	 http
     .authorizeRequests()                                                                
-        .antMatchers ("/oauth/token", "/oauth/authorize**").permitAll()               
+        .antMatchers ("/oauth/MDBToken/token", "/oauth/authorize**").permitAll()               
         .antMatchers("**/search").hasAnyRole("USER","ADMIN")                                    
         .antMatchers("/application/mdb**").hasRole("ADMIN")
         .anyRequest().authenticated(); 

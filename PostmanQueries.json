@@ -1,0 +1,105 @@
+Add movie:
+POST: http://localhost:8080/application/mdb/add/movie
+Request Body:
+{
+"movieId:" : "123",
+"movieName" : "DDLJ12",
+"movieDescription" :"abc",
+"dateOfRelease" : "1999-09-01",
+ "theaters" : ["vandana", "aakash",  "minerva"],
+ "cast" : {
+        "actors" : [
+            "leo",
+            "kate"
+        ],
+        "producers" : [
+            "james",
+            "cameroon"
+        ],
+        "directors" : [
+            "steven",
+            "speielberg"
+        ]
+ },
+"rating" : 2,
+"duration" : 120.0
+}
+
+****************************************************************************************************************
+Add Show:
+POST: http://localhost:8080/application/mdb/add/show
+
+Request Body:
+{
+"showID" : "123",
+"showName" : "Friends",
+"showDescription" : "friends",
+"dateOfRelease" : "2004-09-01",
+"channels" : ["star world", "comedy central",  "hbo"],
+"cast" :  {
+        "actors" : [
+            "joey",
+            "monica"
+        ],
+        "producers" : [
+            "ross",
+            "rachel"
+        ],
+        "directors" : [
+            "phoebe",
+            "gunther"
+        ]
+ },
+"rating" : 4,
+"duration" : 34.0
+}
+
+********************************************************************************************************************
+Update Movie:
+PUT: http://localhost:8080/application/mdb/update/movie
+Request Body:
+{
+"movieId" : 5,
+"movieDescription" :"123hello",
+"duration" : 160.3
+}
+*************************************************************************************************************************
+Update Show:
+PUT: http://localhost:8080/application/mdb/update/show
+Request Body:
+{
+"showID" : 2,
+"showName" : "Friends",
+"showDescription" : "friends have 10 season",
+"dateOfRelease" : "2004-03-01",
+"rating" : 4,
+"duration" : 34.8
+}
+**************************************************************************************************************************
+Search Show/Movie:
+POST: http://localhost:8080/application/mdb/shows/search and http://localhost:8080/application/mdb/movies/search
+Request Body:
+{
+"movieId"/"showID" : 5,
+"movieDescription" :"123hello",
+"duration" : 160.3
+}
+**************************************************************************************************************************
+Add Comments
+POST: http://localhost:8080/application/mdb/comments
+Request Body:
+{
+	"movieId" / "showID" : 5,
+	"comment": "very good movie it was"
+}
+
+********************************************************************************************************************************
+To get OAuth2.0 token_type
+POST: http://localhost:8080/oauth/token
+{
+    "access_token": "f6b8b391-3d0a-4ad7-99fd-7c0c7f19901f",
+    "token_type": "bearer",
+    "refresh_token": "7184ba2e-a396-493f-9344-09c2a274bb92",
+    "expires_in": 1799,
+    "scope": "read write"
+}
