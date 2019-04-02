@@ -25,7 +25,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.inMemory().withClient("client")
+		clients.inMemory().withClient("clientThirdParty")
 				.authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
 				.authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT", "USER").scopes("read", "write").autoApprove(true)
 				.secret(("{noop}password")) // https://stackoverflow.com/a/49683417/5105808

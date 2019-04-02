@@ -33,7 +33,7 @@ public class MDBValidation {
 			sb.append(" ");
 			isMovieValid = false;
 		}
-		if (movie.getDuration() <= 0) {
+		if (movie.getDuration() <= 0.0) {
 			sb.append("Movie is missing duration.");
 			sb.append(" ");
 			isMovieValid = false;
@@ -44,7 +44,7 @@ public class MDBValidation {
 		}
 
 		if (!isMovieValid)
-			throw new MDBException("Movie is not valid. Missing fields: " + sb.toString());
+			throw new MDBException("Movie is not valid. Missing fields: " + sb.toString().trim());
 
 	}
 
@@ -67,7 +67,7 @@ public class MDBValidation {
 		}
 
 		if (!isShowValid)
-			throw new MDBException("Show is not valid. Missing fields: " + sb.toString());
+			throw new MDBException("Show is not valid. Missing fields: " + sb.toString().trim());
 
 	}
 

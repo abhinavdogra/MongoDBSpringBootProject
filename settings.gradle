@@ -16,4 +16,3 @@ include 'services:webservice'
 */
 
 rootProject.name = 'MoiveManagingSystem'
-enableFeaturePreview('IMPROVED_POM_SUPPORT')

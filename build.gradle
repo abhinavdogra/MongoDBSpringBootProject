@@ -45,8 +45,10 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.sun.jersey/jersey-json
 	compile group: 'com.sun.jersey', name: 'jersey-json', version: '1.19.4'
 	implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
+	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+	
+	
 }
 
 dependencyManagement {
